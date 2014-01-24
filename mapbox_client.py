@@ -1,3 +1,8 @@
+'''
+Not as fun, and without caching, but this is an alternative to most of this code
+using ModestMaps: https://gist.github.com/tmcw/4199233
+'''
+
 from __future__ import division  # divisions are float now
 from PIL import Image
 from urllib2 import urlopen
