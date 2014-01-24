@@ -43,6 +43,8 @@ See the `Makefile` and the images in the `examples` directories for some nice ba
 
 ![](https://raw.github.com/zugaldia/wallmapper/master/examples/eleanor-woodcut-18.png)
 
+![](https://raw.github.com/zugaldia/wallmapper/master/examples/dc-nightvision-16.png)
+
 ## Troubleshooting
 
 The scripts requires PIL to be installed and visible in the Python PATH. You may need to do something like the following:
