@@ -7,7 +7,7 @@ it imposes a limit of 1280x1280 pixels.
 This script downloads individual tiles and knit them together to reach bigger resolutions.
 That way, you can use these beautiful maps as the wallpaper image of your favorite smartphone and/or tablet.
 
-Please be nice and do not abuse the Mapbox API.
+IMPORTANT: Make sure you a MapBox account, and you replace the `examples` tileset with a tileset in your Mapbox account.
 
 ## Usage
 
