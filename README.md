@@ -40,6 +40,8 @@ By default, we generate wallpapers centered in Washington, DC using the amazing 
 
 See the `Makefile` and the images in the `examples` directories for some nice basemaps at different zoom levels.
 
+![](https://raw.github.com/zugaldia/wallmapper/master/examples/eleanor-woodcut-18.png)
+
 ## Troubleshooting
 
 The scripts requires PIL to be installed and visible in the Python PATH. You may need to do something like the following:
