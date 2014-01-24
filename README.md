@@ -1,8 +1,9 @@
 # Wallmapper
 
-A simple Python scripts that helps you create high resolution wallpapers from Mapbox maps.
+A simple Python script that helps you create high resolution wallpapers from Mapbox maps.
 
-Although Mapbox has a [static API](https://www.mapbox.com/developers/api/#Static.API), it imposes a limit of 1280x1280 pixels.
+Although Mapbox has a [static API](https://www.mapbox.com/developers/api/#Static.API),
+it imposes a limit of 1280x1280 pixels.
 This script downloads individual tiles and knit them together to reach bigger resolutions.
 That way, you can use these beautiful maps as the wallpaper image of your favorite smartphone and/or tablet.
 
