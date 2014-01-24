@@ -7,11 +7,11 @@ it imposes a limit of 1280x1280 pixels.
 This script downloads individual tiles and knit them together to reach bigger resolutions.
 That way, you can use these beautiful maps as the wallpaper image of your favorite smartphone and/or tablet.
 
-IMPORTANT: Make sure you a MapBox account, and you replace the `examples` tileset with a tileset in your Mapbox account.
-
 ## Usage
 
-Just run the `--help` for an overview of the available options:
+Make sure you have a MapBox account, and you replace the `examples` tileset with a tileset in your Mapbox account.
+
+Run the `--help` for an overview of the available options:
 
 ```
 $ python wallmapper.py -h
