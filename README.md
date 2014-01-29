@@ -7,6 +7,8 @@ it imposes a limit of 1280x1280 pixels.
 This script downloads individual tiles and knit them together to reach bigger resolutions.
 That way, you can use these beautiful maps as the wallpaper image of your favorite smartphone and/or tablet.
 
+Note: Printing maps is not covered by the Mapbox TOS. If you'd like to print your maps, ask for permission first.
+
 ## Usage
 
 Make sure you have a MapBox account, and you replace the `examples` tileset with a tileset in your Mapbox account.
