@@ -43,11 +43,11 @@ By default, we generate wallpapers centered in Washington, DC using the amazing 
 
 See the `Makefile` and the images in the `examples` directories for some nice basemaps at different zoom levels.
 
-![](https://raw.github.com/zugaldia/wallmapper/master/examples/eleanor-woodcut-18.png)
+![woodcut](https://raw.github.com/zugaldia/wallmapper/master/examples/eleanor-woodcut-18.png)
 
-![](https://raw.github.com/zugaldia/wallmapper/master/examples/dc-nightvision-16.png)
+![nightvision](https://raw.github.com/zugaldia/wallmapper/master/examples/dc-nightvision-16.png)
 
-![](https://raw.github.com/zugaldia/wallmapper/master/examples/space-station-18.png)
+![space](https://raw.github.com/zugaldia/wallmapper/raw/master/examples/dc-nightvision-16.png)
 
 ## Troubleshooting
 
