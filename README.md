@@ -9,6 +9,12 @@ That way, you can use these beautiful maps as the wallpaper image of your favori
 
 Note: Printing maps is not covered by the Mapbox TOS. If you'd like to print your maps, ask for permission first.
 
+## UPDATES
+
+* Updated to run with Python 3
+* Updated to the latest Mapbox Tiles API
+* Added API access token request
+
 ## Usage
 
 Make sure you have a MapBox account, and you replace the `examples` tileset with a tileset in your Mapbox account.
@@ -19,7 +25,7 @@ Run the `--help` for an overview of the available options:
 $ python wallmapper.py -h
 usage: Wallmapper [-h] [--width WIDTH] [--height HEIGHT] [--latitude LATITUDE]
                   [--longitude LONGITUDE] [--zoom ZOOM] [--basemap BASEMAP]
-                  [--output OUTPUT] [--stats STATS]
+                  [--output OUTPUT] [--stats STATS] [--user USER]
 
 Create high resolution wallpapers from Mapbox maps.
 
@@ -27,17 +33,20 @@ optional arguments:
   -h, --help            show this help message and exit
   --width WIDTH         Wallpaper width (default: 2160)
   --height HEIGHT       Wallpaper height (default: 1920)
-  --latitude LATITUDE   Latitude (default: 38.9101)
-  --longitude LONGITUDE Longitude (default: -77.0485)
-  --zoom ZOOM           Zoom level (default: 17)
-  --basemap BASEMAP     Mapbox basemap (default: eleanor.mnyzxgvi)
+  --latitude LATITUDE   Latitude (default: 47.4863)
+  --longitude LONGITUDE Longitude (default: 19.0627)
+  --zoom ZOOM           Zoom level (default: 11)
+  --basemap BASEMAP     Mapbox basemap (working together with user!) (default: basic-v9)
   --output OUTPUT       Output filename (default: wallmapper.png)
   --stats STATS         Print some raw statistics (default: True)
+  --user USER           User name to use for retrieving basemap (default: mapbox)
 ```
 
 They are all optional and we provide defaults for all of them.
 
-By default, we generate wallpapers centered in Washington, DC using the amazing [woodcut basemap](https://www.mapbox.com/blog/interactive-woodcut-map/) from Eleanor Lutz.
+## API key
+
+Upon starting the program will ask you for your Mapbox public access API key!
 
 ## Examples
 

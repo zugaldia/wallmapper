@@ -5,7 +5,7 @@ using ModestMaps: https://gist.github.com/tmcw/4199233
 
 from __future__ import division  # divisions are float now
 from PIL import Image
-from urllib2 import urlopen
+from urllib.request import urlopen
 import math
 import os
 
@@ -15,21 +15,23 @@ TILE_SIZE = 256
 # Cache tiles not to abuse our Mapbox friends
 CACHE_FOLDER = 'cache'
 
-API_URL = 'http://a.tiles.mapbox.com/v3/%s/%d/%d/%d.png'
-TILE_TEMPLATE = CACHE_FOLDER + '/%s-%d-%d-%d.png'
+API_URL = 'http://api.mapbox.com/styles/v1/%s/%s/tiles/256/%d/%d/%d?access_token=%s'
+TILE_TEMPLATE = CACHE_FOLDER + '/%s-%s-%d-%d-%d.png'
 
 class MapboxClientError(Exception):
     ''' Base class for exceptions in this module. '''
     pass
 
 class MapboxClient():
-    def __init__(self, width, height, latitude, longitude, zoom, basemap, output, stats):
+    def __init__(self, width, height, latitude, longitude, zoom, basemap, output, stats, user, token):
         # Save properties
         self.wallpaper_width = width
         self.wallpaper_height = height
         self.zoom = zoom
         self.basemap = basemap
         self.output = output
+        self.user = user
+        self.token = token
 
         # Compute basic elements
         total_tiles = self.get_total_tiles(zoom=zoom)
@@ -41,19 +43,19 @@ class MapboxClient():
 
         # Print stats
         if stats:
-            print 'This zoom level has this many tiles in total', total_tiles
-            print 'The central tile is', central_tile
-            print 'This is the tile set we will assemble', self.tile_set
-            print 'The total number of required tiles is', len(self.tile_set[0]) * len(self.tile_set[1])
-            print 'The raw width before cropping is', len(self.tile_set[0]) * TILE_SIZE
-            print 'The raw height before cropping is', len(self.tile_set[1]) * TILE_SIZE
+            print('This zoom level has this many tiles in total', total_tiles)
+            print('The central tile is', central_tile)
+            print('This is the tile set we will assemble', self.tile_set)
+            print('The total number of required tiles is', len(self.tile_set[0]) * len(self.tile_set[1]))
+            print('The raw width before cropping is', len(self.tile_set[0]) * TILE_SIZE)
+            print('The raw height before cropping is', len(self.tile_set[1]) * TILE_SIZE)
 
     def generate_wallpaper(self):
-        self.download_tiles(tile_set=self.tile_set, basemap=self.basemap, zoom=self.zoom)
+        self.download_tiles(tile_set=self.tile_set, basemap=self.basemap, zoom=self.zoom, user=self.user, token=self.token)
         self.merge_tiles(
             tile_set=self.tile_set, basemap=self.basemap, zoom=self.zoom,
             wallpaper_width=self.wallpaper_width, wallpaper_height=self.wallpaper_height,
-            output=self.output)
+            output=self.output, user=self.user)
 
     '''
     Math helpers
@@ -110,13 +112,13 @@ class MapboxClient():
     '''
 
     @classmethod
-    def download_tiles(cls, tile_set, basemap, zoom):
+    def download_tiles(cls, tile_set, basemap, zoom, user, token):
         ''' Download the images (if not present in the cache) '''
         for x in tile_set[0]:
             for y in tile_set[1]:
-                tile_destination = TILE_TEMPLATE % (basemap, zoom, x, y)
+                tile_destination = TILE_TEMPLATE % (user, basemap, zoom, x, y)
                 if not os.path.exists(tile_destination):
-                    tile_url = API_URL % (basemap, zoom, x, y)
+                    tile_url = API_URL % (user, basemap, zoom, x, y, token)
                     cls.download_tile(tile_url, tile_destination)
 
     @staticmethod
@@ -127,14 +129,14 @@ class MapboxClient():
             local_file.write(f.read())
 
     @staticmethod
-    def merge_tiles(tile_set, basemap, zoom, wallpaper_width, wallpaper_height, output):
+    def merge_tiles(tile_set, basemap, zoom, wallpaper_width, wallpaper_height, output, user):
         ''' Merge all the tiles into one big image '''
         image_width = len(tile_set[0]) * TILE_SIZE
         image_height = len(tile_set[1]) * TILE_SIZE
         image = Image.new('RGB', (image_width, image_height))
         for posx in range(0, len(tile_set[0])):
             for posy in range(0, len(tile_set[1])):
-                tile_file = TILE_TEMPLATE % (basemap, zoom, tile_set[0][posx], tile_set[1][posy])
+                tile_file = TILE_TEMPLATE % (user, basemap, zoom, tile_set[0][posx], tile_set[1][posy])
                 tile_image = Image.open(tile_file)
                 image.paste(tile_image, (posx * TILE_SIZE, posy * TILE_SIZE))
 

@@ -9,19 +9,22 @@ Defaults
 DEFAULT_WIDTH = 1080 * 2
 DEFAULT_HEIGHT = 1920
 
-# Washington, DC
-DEFAULT_LATITUDE = 38.91010
-DEFAULT_LONGITUDE = -77.0485
-DEFAULT_ZOOM = 17
+# Budapest, HU
+DEFAULT_LATITUDE = 47.4863
+DEFAULT_LONGITUDE = 19.0627
+DEFAULT_ZOOM = 11
 
-# Some beautiful basemap to start with -- see /examples for more
-DEFAULT_BASEMAP = 'eleanor.mnyzxgvi'  # Max zoom 21
+# Basemap to start with
+DEFAULT_BASEMAP = 'basic-v9'    
 
 # Output file
 DEFAULT_OUTPUT = 'wallmapper.png'
 
 # Stats
 DEFAULT_STATS = True
+
+# User
+DEFAULT_USER = 'mapbox'
 
 '''
 Parser
@@ -49,6 +52,8 @@ parser.add_argument('--output',
     type=str, default=DEFAULT_OUTPUT, help='Output filename')
 parser.add_argument('--stats',
     type=bool, default=DEFAULT_STATS, help='Print some raw statistics')
+parser.add_argument('--user',
+    type=str, default=DEFAULT_USER, help='User name')
 
 args = vars(parser.parse_args())
 
@@ -57,10 +62,12 @@ Mapbox client
 '''
 
 try:
-    print 'Generating wallpaper...'
+    print('Please provide your public access API key')
+    args["token"] = input()
+    print('Generating wallpaper...')
     mapbox_client = MapboxClient(**args)
     mapbox_client.generate_wallpaper()
 except Exception as e:
-    print 'Error:', str(e)
+    print('Error:', str(e))
 else:
-    print 'Done.'
+    print('Done.')
